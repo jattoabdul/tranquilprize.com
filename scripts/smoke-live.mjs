@@ -7,7 +7,13 @@ for (const [route, text] of [
 ]) {
   const response = await fetch(base + route);
   assert.equal(response.status, 200, route);
-  assert((await response.text()).includes(text), `${route}: expected content`);
+  const html = await response.text();
+  assert(html.includes(text), `${route}: expected content`);
+  assert(
+    !html.includes('static.cloudflareinsights.com'),
+    'No injected analytics',
+  );
+  assert(response.headers.get('cache-control')?.includes('no-transform'));
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
 }
 assert.equal((await fetch(base + '/missing-page/')).status, 404);

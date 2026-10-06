@@ -46,6 +46,7 @@ Tests never submit applications or RSVPs. CI additionally checks dependency advi
 and the `production` environment. The custom domains are `tranquilprize.com` and
 `www.tranquilprize.com`; `www` redirects to the canonical apex, preserving path and query.
 A small Worker handles this host redirect and forwards other requests to the static assets binding.
+HTML responses use `no-transform` to prevent Cloudflare from automatically inserting analytics scripts.
 No database or Railway service is needed.
 
 GitHub Actions validates changes on pull requests and main. The production job deploys the exact

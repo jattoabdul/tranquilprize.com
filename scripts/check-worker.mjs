@@ -23,4 +23,24 @@ const response = await worker.fetch(request, {
   },
 });
 assert.equal(response, asset);
+const html = await worker.fetch(request, {
+  ASSETS: {
+    fetch: () =>
+      new Response('Page', {
+        status: 404,
+        headers: {
+          'content-type': 'text/html',
+          'cache-control': 'public, max-age=0',
+          'x-content-type-options': 'nosniff',
+        },
+      }),
+  },
+});
+assert.equal(html.status, 404);
+assert.equal(
+  html.headers.get('cache-control'),
+  'public, max-age=0, no-transform',
+);
+assert.equal(html.headers.get('x-content-type-options'), 'nosniff');
+assert.equal(await html.text(), 'Page');
 console.log('Canonical host redirect and asset response forwarding passed.');
