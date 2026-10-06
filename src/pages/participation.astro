@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { event } from '../data/event';
+---
+
+<Layout
+  title="Privacy & participation | TPSP 2026"
+  description="How to apply or RSVP, the parent and guardian role, and information about photography and filming at TPSP 2026."
+>
+  <article class="participation wrap section">
+    <a class="back-link" href="/">
+      ← TPSP 2026
+    </a>
+    <h1>
+      Privacy &<br />
+      participation.
+    </h1>
+    <section>
+      <h2>Applications and RSVPs</h2>
+      <p>
+        This website does not collect applications or RSVPs. Contestant
+        applications are submitted through the organiser’s Google Form. Audience
+        RSVPs are handled by Luma. Those services have their own privacy notices
+        and may require you to sign in.
+      </p>
+      <p>
+        This site uses locally hosted fonts and does not include analytics,
+        tracking cookies or embedded registration forms.
+      </p>
+    </section>
+    <section>
+      <h2>For parents and guardians</h2>
+      <p>
+        A parent or legal guardian must submit a contestant’s application.
+        Review the form’s information and permission requests before sending the
+        video or the student’s details. Contact the organiser if you have
+        questions about access, retention, corrections or withdrawal.
+      </p>
+      <p>
+        Student audition videos, guardian contact details and judging notes are
+        not published on this website.
+      </p>
+    </section>
+    <section>
+      <h2>Photography and filming</h2>
+      <p>
+        Photography and filming are planned at the event, including for a
+        YouTube feature. Participant and guardian permissions will be
+        coordinated by the organising team.
+      </p>
+      <p>
+        Public use of a student’s footage must follow the scope of the
+        permission recorded for that student. An application or audience RSVP
+        should not be treated as blanket permission to publish a student’s
+        video. Ask the host about filming arrangements or any concern before
+        attending.
+      </p>
+    </section>
+    <section>
+      <h2>Contact the organiser</h2>
+      <p>
+        TPSP is convened by {event.organiser}. Visit the{' '}
+        <a href={event.rsvp} target="_blank" rel="noopener noreferrer">
+          Luma event page<span class="sr-only"> (opens in a new tab)</span>
+        </a>{' '}
+        and choose “Contact the Host” for participation or privacy questions.
+      </p>
+    </section>
+  </article>
+</Layout>

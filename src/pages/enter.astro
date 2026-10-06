@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+import { event } from '../data/event';
+---
+
+<Layout
+  title="Enter the competition | TPSP 2026"
+  description="The TPSP audition guide for JS1–SS3 students and their parents or guardians. Prepare a portrait video of up to 60 seconds and apply through the existing Google Form."
+>
+  <section class="guide-hero">
+    <div class="wrap">
+      <a href="/" class="back-link">
+        ← TPSP 2026
+      </a>
+      <h1>
+        One minute.
+        <br />
+        Make it yours.
+      </h1>
+      <p class="lead">
+        Your guide to entering the Tranquil Public Speaking Prize.
+      </p>
+      <div class="guide-summary">
+        <span>JS1–SS3 inclusive</span>
+        <span>60 seconds maximum</span>
+        <span>Parent or guardian submits</span>
+      </div>
+      <a class="button cream" href="#submit">
+        How to submit <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </section>
+  <div class="guide-layout wrap section">
+    <aside class="guide-nav" aria-label="On this page">
+      <nav>
+        <a href="#eligibility">Who can enter</a>
+        <a href="#prompt">Your audition prompt</a>
+        <a href="#record">Record your video</a>
+        <a href="#submit">Submit an application</a>
+        <a href="#selection">What happens next</a>
+      </nav>
+    </aside>
+    <div class="guide-content">
+      <section id="eligibility">
+        <h2>A place for your voice.</h2>
+        <p>
+          TPSP is open to secondary-school students in{' '}
+          <strong>JS1, JS2, JS3, SS1, SS2 and SS3</strong>. A parent or legal
+          guardian must submit the application.
+        </p>
+        <p>
+          The audition is online. If selected, contestants attend the physical
+          event at the Main Hall, Ilorin Innovation Hub, on{' '}
+          <strong>Thursday, 19 November 2026</strong>. The first round,
+          semifinal and final all happen that day.
+        </p>
+      </section>
+      <section id="prompt" class="prompt-block">
+        <h2>Your audition prompt</h2>
+        <blockquote>“{event.prompt}”</blockquote>
+        <p>
+          Explain the change, why it matters and the difference it could make.
+        </p>
+      </section>
+      <section id="record">
+        <h2>
+          Keep it natural.
+          <br />
+          Keep it to a minute.
+        </h2>
+        <ol class="record-steps">
+          <li>
+            <h3>Choose your idea</h3>
+            <p>
+              Think about one change in your school or community. Give yourself
+              room to explain why it matters.
+            </p>
+          </li>
+          <li>
+            <h3>Record in portrait</h3>
+            <p>
+              Hold the phone upright. Your video must be a maximum of{' '}
+              <strong>60 seconds</strong>. Include your name, class and school.
+            </p>
+          </li>
+          <li>
+            <h3>Speak in your own voice</h3>
+            <p>
+              Speak naturally without reading a script. As a recording tip,
+              choose a quiet spot and make sure your voice is easy to hear.
+            </p>
+          </li>
+          <li>
+            <h3>Watch it back together</h3>
+            <p>
+              Check the sound, picture and duration with your parent or guardian
+              before submitting.
+            </p>
+          </li>
+        </ol>
+      </section>
+      <section id="submit" class="submission-block">
+        <h2>Ready to share your idea?</h2>
+        <p>
+          A <strong>parent or legal guardian</strong> should open the existing
+          application form, complete the requested information and submit the
+          audition video.
+        </p>
+        <ul class="checklist">
+          <li>Portrait video, no longer than 60 seconds.</li>
+          <li>Student’s name, class and school included.</li>
+          <li>A response to the exact audition prompt.</li>
+          <li>Parent or guardian has reviewed the form and its permissions.</li>
+        </ul>
+        <ExternalLink href={event.application} class="button purple">
+          Open the application form
+        </ExternalLink>
+        <p class="small">
+          Opens Google Forms in a new tab. Google sign-in is required. Submit
+          directly there, including any video upload.
+        </p>
+        <div class="submission-note">
+          <h3>Before you submit</h3>
+          <p>
+            The application deadline, accepted speaking languages, file types
+            and upload size limit are awaiting confirmation. Check the form and
+            contact the organiser if these details affect your entry.
+          </p>
+          <p>
+            Students in <strong>JS1–SS3 are eligible</strong>. The form’s
+            introduction currently says “Senior Secondary School students”; its
+            class choices include junior secondary classes.
+          </p>
+        </div>
+        <p>
+          Need help? Open the{' '}
+          <a href={event.rsvp} target="_blank" rel="noopener noreferrer">
+            Luma event page<span class="sr-only"> (opens in a new tab)</span>
+          </a>{' '}
+          and choose “Contact the Host”.
+        </p>
+      </section>
+      <section id="selection">
+        <h2>Then comes the stage.</h2>
+        <p>
+          Auditions are reviewed to select approximately{' '}
+          <strong>50 contestants</strong> for the physical event. Fifteen
+          advance to the semifinal, five to the final, and the top three receive
+          the winner and runner-up places.
+        </p>
+        <p>
+          The organiser will confirm the selection timetable and how guardians
+          will receive decisions. Submitting an audition does not confirm a
+          place at the physical competition.
+        </p>
+        <a class="text-link" href="/participation/">
+          Read about privacy and participation <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </div>
+  </div>
+  <section class="guide-audience wrap">
+    <h2>Coming to cheer them on?</h2>
+    <p>
+      Audience attendance is free and requires no approval. Reserve your place
+      separately through Luma.
+    </p>
+    <ExternalLink href={event.rsvp} class="button purple">
+      RSVP to attend
+    </ExternalLink>
+  </section>
+</Layout>

@@ -1,0 +1,107 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/source-sans-3';
+import '../styles/global.css';
+import { event } from '../data/event';
+import { getImage } from 'astro:assets';
+import cover from '../assets/tpsp-cover-concept.png';
+const shareImage = await getImage({ src: cover, width: 1200, format: 'png' });
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const current = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#482070" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tranquil Public Speaking Prize" />
+    <meta property="og:locale" content="en_NG" />
+    <meta property="og:image" content={new URL(shareImage.src, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta
+      property="og:image:alt"
+      content="TPSP 2026: Voices for the Future, 19 November in Ilorin."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content={new URL(current, Astro.site)} />
+    <link rel="canonical" href={new URL(current, Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="wordmark" aria-label="TPSP 2026 home">
+          tpsp <span>2026</span>
+        </a>
+        <button
+          class="menu-toggle"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+          hidden
+        >
+          Menu <span aria-hidden="true">＋</span>
+        </button>
+        <nav id="primary-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#journey">The competition</a>
+          <a href="/#attend">Attend</a>
+          <a href="/#questions">FAQs</a>
+          <a
+            class="nav-apply"
+            href="/enter/"
+            aria-current={current === '/enter/' ? 'page' : undefined}
+          >
+            Enter the competition <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="footer" id="contact">
+      <div class="footer-top wrap">
+        <div>
+          <h2>Let’s hear the next generation.</h2>
+          <p>
+            Tranquil Public Speaking Prize 2026
+            <br />
+            Convened by {event.organiser}.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href={event.rsvp} target="_blank" rel="noopener noreferrer">
+            Contact the host on Luma <span aria-hidden="true">↗</span>
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+          <a href="/participation/">Privacy & participation</a>
+          <a href="/enter/">Contestant information</a>
+        </div>
+      </div>
+      <div class="footer-word" aria-hidden="true">
+        tranquil.
+      </div>
+      <div class="footer-bottom wrap">
+        <span>© 2026 Tranquil Public Speaking Prize</span>
+        <span>19 November. Ilorin, Nigeria.</span>
+      </div>
+    </footer>
+    <script is:inline type="module" src="/navigation.js"></script>
+  </body>
+</html>
