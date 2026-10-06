@@ -134,7 +134,8 @@ import { event } from '../data/event';
           </p>
         </div>
         <p>
-          Need help? Open the{' '}
+          Need help? Email <a href={`mailto:${event.email}`}>{event.email}</a>{' '}
+          or open the{' '}
           <a href={event.rsvp} target="_blank" rel="noopener noreferrer">
             Luma event page<span class="sr-only"> (opens in a new tab)</span>
           </a>{' '}

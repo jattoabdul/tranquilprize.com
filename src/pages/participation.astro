@@ -59,11 +59,13 @@ import { event } from '../data/event';
     <section>
       <h2>Contact the organiser</h2>
       <p>
-        TPSP is convened by {event.organiser}. Visit the{' '}
+        TPSP is convened by {event.organiser}. For participation or privacy
+        questions, email <a href={`mailto:${event.email}`}>{event.email}</a> or
+        visit the{' '}
         <a href={event.rsvp} target="_blank" rel="noopener noreferrer">
           Luma event page<span class="sr-only"> (opens in a new tab)</span>
         </a>{' '}
-        and choose “Contact the Host” for participation or privacy questions.
+        and choose “Contact the Host”.
       </p>
     </section>
   </article>

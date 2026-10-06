@@ -86,6 +86,7 @@ const current = Astro.url.pathname;
           </p>
         </div>
         <div class="footer-links">
+          <a href={`mailto:${event.email}`}>{event.email}</a>
           <a href={event.rsvp} target="_blank" rel="noopener noreferrer">
             Contact the host on Luma <span aria-hidden="true">↗</span>
             <span class="sr-only"> (opens in a new tab)</span>

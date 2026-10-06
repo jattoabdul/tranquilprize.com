@@ -6,6 +6,7 @@ export const event = {
   venue: 'Main Hall, Ilorin Innovation Hub',
   city: 'Ilorin, Nigeria',
   organiser: 'Sakeenah Jatto',
+  email: 'info@tranquilprize.com',
   rsvp: 'https://luma.com/3nrxc5t9',
   application:
     'https://docs.google.com/forms/d/e/1FAIpQLSdUkh8KxkuA2PvPiT6XQPXW8VVwKw78BsorWLr-NLBboDW7IQ/viewform',

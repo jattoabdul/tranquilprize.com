@@ -42,6 +42,14 @@ for (const [route, document] of pages) {
       'Empty link',
     );
     const url = new URL(a.getAttribute('href'), origin + route);
+    if (url.protocol === 'mailto:') {
+      assert.equal(
+        url.href,
+        'mailto:info@tranquilprize.com',
+        'Confirmed contact email',
+      );
+      continue;
+    }
     if (url.origin !== origin) {
       assert(
         [
