@@ -12,7 +12,7 @@
     "preview": "astro preview --host 127.0.0.1 --port 4322",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "npm run format:check && npm run build && node scripts/check-build.mjs",
+    "check": "npm run format:check && npm run build && node scripts/check-build.mjs && node scripts/check-worker.mjs",
     "test:browser": "node scripts/browser-smoke.mjs",
     "deploy:dry-run": "wrangler deploy --env production --dry-run",
     "deploy": "wrangler deploy --env production",

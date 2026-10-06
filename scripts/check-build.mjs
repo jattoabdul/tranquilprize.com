@@ -67,7 +67,6 @@ assert(pages.get('/enter/').body.textContent.includes('JS1'));
 assert(pages.get('/enter/').body.textContent.includes('60 seconds'));
 await access('dist/404.html');
 await access('dist/_headers');
-await access('dist/_redirects');
 console.log(
   'Built routes, anchors, local assets, event timings and external destinations passed.',
 );
