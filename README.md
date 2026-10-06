@@ -23,6 +23,7 @@ Preview at http://127.0.0.1:4322. To inspect production output, run `npm run bui
 
 Public arrivals: 9:30 a.m. WAT. Programme: 10:30 a.m. WAT. Close: 5:00 p.m. WAT.
 Applications remain in the organiser-owned Google Form. Free audience RSVPs remain in Luma.
+The host can also be reached at info@tranquilprize.com.
 No application database, review dashboard, registration embed or analytics is included.
 Unconfirmed deadlines, upload/language rules and notification details must be verified with the organiser.
 
@@ -60,6 +61,9 @@ Configure these GitHub Actions values to enable automatic deployment:
 
 Do not copy local OAuth or refresh tokens into CI. Provider credentials belong in encrypted secrets.
 The deploy flag is an explicit setup switch, not evidence that credentials or a deployment work.
+The deployment token is backed up in 1Password as `TPSP Cloudflare deployment` in the Private vault.
+Local credentials may be loaded from the Git-ignored `.env`; keep its permissions at `600`.
+`.env.example` contains only the expected variable names. Never commit a populated environment file.
 
 For an authorised local release:
 
