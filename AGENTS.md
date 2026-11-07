@@ -4,7 +4,10 @@ This repository contains the public Tranquil Public Speaking Prize website.
 
 - Preserve the current Astro static architecture and npm lockfile.
 - Read README.md and src/data/event.ts before changing event details.
-- Public arrivals are 9:30 a.m. WAT, programme start 10:30 a.m., public close 5 p.m.
+- Public arrivals and purple carpet are 8:30 a.m. WAT, programme start 9:00 a.m., public close 5 p.m.
+  The 9:00-10:30 block absorbs late arrivals; the formal opening is 10:30 (owner, 2026-11-07).
+- The programme of events lives in src/data/event.ts. After changing it, regenerate
+  public/tpsp-2026-programme.pdf with npm run programme:pdf.
 - Contestants in JS1–SS3 apply through the existing Google Form; Luma handles audience RSVPs.
 - Do not introduce an application database, public student videos or private judging records.
 - Use purple, warm white and restrained gold. Preserve accessible navigation and reduced motion.

@@ -50,7 +50,7 @@ try {
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text());
   });
-  for (const route of ['/', '/enter/', '/participation/']) {
+  for (const route of ['/', '/enter/', '/programme/', '/participation/']) {
     await page.goto(base + route);
     await page.evaluate(() => document.fonts.ready);
     for (const width of [320, 390, 768, 1440]) {
@@ -106,8 +106,9 @@ try {
     true,
   );
   await page
-    .getByRole('link', { name: 'Enter the competition', exact: true })
+    .getByRole('link', { name: 'Contestant guide', exact: true })
     .filter({ visible: true })
+    .first()
     .click();
   await page.waitForURL('**/enter/');
   assert(

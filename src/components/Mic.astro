@@ -1,0 +1,38 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = 'mic' } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 240 520"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <pattern id="mic-mesh" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="2.6" fill="#ffffff" opacity="0.55"></circle>
+    </pattern>
+    <linearGradient id="mic-body" x1="0" x2="1">
+      <stop offset="0" stop-color="#2a1048"></stop>
+      <stop offset="0.5" stop-color="#5a2799"></stop>
+      <stop offset="1" stop-color="#220c3c"></stop>
+    </linearGradient>
+    <radialGradient id="mic-head" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#c9a8f0"></stop>
+      <stop offset="0.55" stop-color="#7b3fc4"></stop>
+      <stop offset="1" stop-color="#2d0f52"></stop>
+    </radialGradient>
+  </defs>
+  <circle cx="120" cy="110" r="96" fill="url(#mic-head)"></circle>
+  <circle cx="120" cy="110" r="96" fill="url(#mic-mesh)"></circle>
+  <rect x="34" y="150" width="172" height="16" rx="8" fill="#ffc61a"></rect>
+  <path
+    d="M66 176 h108 l-18 210 a36 36 0 0 1 -72 0 z"
+    fill="url(#mic-body)"
+  ></path>
+  <rect x="104" y="230" width="32" height="7" rx="3.5" fill="#e5179b"></rect>
+  <rect x="112" y="420" width="16" height="100" fill="#2a1048"></rect>
+</svg>

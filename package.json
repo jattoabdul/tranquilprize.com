@@ -16,7 +16,8 @@
     "test:browser": "node scripts/browser-smoke.mjs",
     "deploy:dry-run": "wrangler deploy --env production --dry-run",
     "deploy": "wrangler deploy --env production",
-    "smoke:live": "node scripts/smoke-live.mjs"
+    "smoke:live": "node scripts/smoke-live.mjs",
+    "programme:pdf": "node scripts/programme-pdf.mjs"
   },
   "dependencies": {
     "@fontsource-variable/outfit": "^5.3.0",

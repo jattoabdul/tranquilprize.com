@@ -1,261 +1,310 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Bloom from '../components/Bloom.astro';
 import ExternalLink from '../components/ExternalLink.astro';
-import { Image } from 'astro:assets';
-import cover from '../assets/tpsp-cover-concept.png';
-import { event } from '../data/event';
+import Mic from '../components/Mic.astro';
+import Chevrons from '../components/Chevrons.astro';
+import { event, programme, people } from '../data/event';
+
+const meridiem = (time: string) => {
+  const hour = Number(time.split(':')[0]);
+  return hour >= 8 && hour < 12 ? 'a.m.' : 'p.m.';
+};
+const highlightStarts = ['8:30', '10:30', '10:40', '1:30', '3:15', '4:25'];
+const highlights = highlightStarts.map((start) =>
+  programme.find((item) => item.start === start)!,
+);
+const initials = (name: string) =>
+  name
+    .replace(/^(Dr|Mrs|Mr|Mal\.)\s+/, '')
+    .split(/\s+/)
+    .filter((part) => /^[A-Z]/.test(part))
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('');
+const onStage = [people.convener, ...people.judges, ...people.guests];
+
+const rounds = [
+  {
+    count: '50',
+    name: 'Round One',
+    title: 'The Power of Persuasion',
+    detail: 'One minute to make a case for an idea. Fifteen advance.',
+  },
+  {
+    count: '15',
+    name: 'Semifinal',
+    title: 'The Power of Solutions',
+    detail:
+      'Three minutes on a practical solution to a school or community challenge, then feedback from the panel. Five advance.',
+  },
+  {
+    count: '5',
+    name: 'Final',
+    title: '“Dear Mr Governor”',
+    detail:
+      'A two-minute appeal for positive change, then questions from the judges.',
+  },
+  {
+    count: '3',
+    name: 'Awards',
+    title: 'The winning voices',
+    detail: 'A winner, a first runner-up and a second runner-up.',
+  },
+];
+
 const faqs = [
   [
-    'Who can enter?',
-    'Secondary-school students in JS1–SS3, inclusive. A parent or legal guardian must submit the audition. Selected contestants attend the physical competition in Ilorin.',
-  ],
-  [
     'Is it free to attend?',
-    'Yes. Audience attendance is free, and no approval is required. RSVP through Luma to attend. An audience RSVP is separate from a contestant application.',
+    'Yes. Audience attendance is free, and no approval is required. RSVP through Luma so we can welcome you. An audience RSVP is separate from a contestant application.',
   ],
   [
-    'Can I compete online?',
-    'The audition submission is the only remote stage. Approximately 50 selected contestants will attend all three physical rounds in Ilorin on 19 November 2026.',
+    'What time should I arrive?',
+    `Arrivals and the purple carpet begin at ${event.arrival} WAT and the programme starts at ${event.programmeStart} WAT. The opening ceremony is at 10:30 a.m. and the event closes at ${event.close} WAT.`,
   ],
   [
-    'Do I need to be an experienced speaker?',
-    'You can start with an idea that matters to you. The audition asks you to speak naturally, without reading a script, for a maximum of 60 seconds. Read the contestant guide before recording.',
+    'Who can compete?',
+    'Secondary-school students in JS1–SS3, inclusive, selected through an online audition. About 50 contestants take part in all three rounds on the day.',
   ],
   [
-    'When does the event start?',
-    `Arrivals begin at ${event.arrival} WAT. The main programme starts promptly at ${event.programmeStart} WAT and the event closes at ${event.close} WAT.`,
+    'Can I leave and come back?',
+    'Yes. Breaks and lunch are marked on the programme of events, which is the best time to move in and out of the hall.',
   ],
   [
     'Will the event be filmed?',
-    'Photography and filming are planned, including a YouTube feature. The organising team will coordinate participant and guardian permissions. Ask the host about the arrangements before attending.',
+    'Photography and filming are planned, including a YouTube feature. The organising team coordinates participant and guardian permissions. Ask the host about the arrangements before attending.',
   ],
 ];
 ---
 
 <Layout
-  title="TPSP 2026 | Tranquil Public Speaking Prize"
-  description="Your ideas deserve to be heard. A public speaking competition for JS1–SS3 students, 19 November 2026 in Ilorin. Enter the audition or RSVP to attend free."
+  title="TPSP 2026 | Tranquil’s Public Speaking Prize"
+  description={`Secondary-school students from across Kwara State compete for the winning voice. Thursday 19 November 2026, Main Hall, Ilorin Innovation Hub. Arrivals and purple carpet ${event.arrival} WAT. Free entry with RSVP.`}
 >
   <section class="hero">
-    <div class="hero-content wrap">
+    <div class="hero-light" aria-hidden="true"></div>
+    <Chevrons class="hero-chevrons" />
+    <div class="hero-inner wrap">
       <div class="hero-copy">
         <h1>
-          Your ideas
-          <br />
-          deserve to
-          <br />
-          be heard.
+          <span class="h1-small">Tranquil’s</span>
+          Public Speaking
+          <span class="h1-gold">Prize 2026</span>
         </h1>
-        <p>
-          Tranquil Public Speaking Prize 2026.
-          <br />A stage for secondary-school students in JS1–SS3.
+        <p class="hero-sub">
+          A public speaking contest for secondary-school students in Kwara
+          State. Theme: <strong>{event.theme}.</strong>
         </p>
+        <ul class="pills" aria-label="Our values">
+          <li class="pill-magenta">Express</li>
+          <li class="pill-yellow">Develop</li>
+          <li class="pill-lilac">Lead</li>
+        </ul>
         <div class="hero-actions">
-          <a class="button cream" href="/enter/">
-            Enter the competition <span aria-hidden="true">↗</span>
+          <a class="button yellow" href="/programme/">
+            See the programme <span aria-hidden="true">→</span>
           </a>
-          <ExternalLink href={event.rsvp} class="text-link light">
+          <ExternalLink href={event.rsvp} class="button outline">
             RSVP to attend
           </ExternalLink>
         </div>
       </div>
-      <Bloom />
-    </div>
-    <div class="event-strip wrap">
-      <p>
-        <span>Thursday</span>
-        <strong>19 November 2026</strong>
-      </p>
-      <p>
-        <span>Main Hall</span>
-        <strong>Ilorin Innovation Hub</strong>
-      </p>
-      <p>
-        <span>Arrivals from</span>
-        <strong>{event.arrival} WAT</strong>
-      </p>
+      <div class="hero-stage">
+        <Mic class="hero-mic" />
+        <dl class="ticket">
+          <div>
+            <dt>Date</dt>
+            <dd>
+              <strong>Thurs. 19th November</strong>
+              2026
+            </dd>
+          </div>
+          <div>
+            <dt>Time</dt>
+            <dd>
+              <strong>{event.arrival} arrivals</strong>
+              Purple carpet. Programme from {event.programmeStart} WAT
+            </dd>
+          </div>
+          <div>
+            <dt>Venue</dt>
+            <dd>
+              <strong>Main Hall</strong>
+              Ilorin Innovation Hub, Ilorin
+            </dd>
+          </div>
+        </dl>
+      </div>
     </div>
   </section>
-  <section id="about" class="about section wrap">
+
+  <section id="about" class="statement section wrap">
     <h2>
       Big ideas.
       <br />
       Young voices.
       <br />
-      <span class="purple-text">A shared future.</span>
+      <span class="grad-text">A shared future.</span>
     </h2>
-    <div class="about-copy">
+    <div class="statement-copy">
       <p class="lead">
         A good idea can begin in a classroom. A confident voice can carry it
         further.
       </p>
       <p>
-        The Tranquil Public Speaking Prize brings secondary-school students
-        together to express what matters to them, listen to one another and make
-        their ideas heard.
+        Tranquil’s Public Speaking Prize brings secondary-school students from
+        across Kwara State together to say what matters to them, listen to one
+        another and compete for the winning voice. Convened by{' '}
+        <strong>{event.organiser}</strong>.
       </p>
+      <ul class="values">
+        <li>
+          <span class="value-tag pill-magenta">Express</span>
+          Share an idea that matters, in your own words.
+        </li>
+        <li>
+          <span class="value-tag pill-yellow">Develop</span>
+          Build confidence and communication on a real stage.
+        </li>
+        <li>
+          <span class="value-tag pill-lilac">Lead</span>
+          Speak up for change in your school and community.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="rounds" class="rounds section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Three rounds. One stage. One day.</h2>
+        <p>
+          Contestants were selected through an online audition. On 19 November
+          they climb, round by round, toward the winning voice.
+        </p>
+      </div>
+      <ol class="risers">
+        {rounds.map((round, i) => (
+          <li style={`--step:${i}`}>
+            <span class="riser-count">{round.count}</span>
+            <div class="riser-body">
+              <h3>
+                <span class="riser-name">{round.name}</span>
+                {round.title}
+              </h3>
+              <p>{round.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="prize wrap" aria-labelledby="prize-heading">
+    <div class="prize-card">
+      <h2 id="prize-heading">Who will take home the grand prize?</h2>
+      <p class="prize-amount">₦500,000</p>
+      <p>Come and cheer on the next generation of speakers.</p>
+    </div>
+  </section>
+
+  <section id="programme" class="glance section wrap">
+    <div class="section-head">
+      <h2>Your day at a glance.</h2>
       <p>
-        Under the theme <strong>“Voices for the Future,”</strong> TPSP
-        celebrates confidence, communication and leadership. The competition is
-        convened by <strong>Sakeenah Jatto.</strong>
+        All times WAT. The full running order lists every break and
+        announcement.
       </p>
-      <a class="text-link" href="/enter/">
-        Find your place on the stage <span aria-hidden="true">↗</span>
+    </div>
+    <ol class="glance-list">
+      {highlights.map((item) => (
+        <li class={item.kind ? `is-${item.kind}` : undefined}>
+          <p class="glance-time">
+            {item.start} <span>{meridiem(item.start)}</span>
+          </p>
+          <p class="glance-title">{item.title}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="glance-actions">
+      <a class="button purple" href="/programme/">
+        Full programme of events <span aria-hidden="true">→</span>
+      </a>
+      <a class="text-link" href="/tpsp-2026-programme.pdf">
+        Download the printable programme <span aria-hidden="true">↓</span>
+        <span class="sr-only"> (PDF)</span>
       </a>
     </div>
   </section>
-  <section id="journey" class="journey section">
+
+  <section id="people" class="people-home section">
     <div class="wrap">
-      <h2>
-        It starts with
-        <br />
-        one minute.
-      </h2>
-      <p class="journey-intro">
-        An online audition. Then one day in Ilorin, with three rounds and a room
-        ready to listen.
-      </p>
-      <ol class="journey-track">
-        <li>
-          <span class="journey-number">
-            60<span>sec</span>
-          </span>
-          <h3>Online audition</h3>
-          <p>Share the change you want to make in your school or community.</p>
-          <a href="/enter/">
-            Read the audition guide <span aria-hidden="true">↗</span>
-          </a>
-        </li>
-        <li>
-          <span class="journey-number">
-            <small>≈</small>50
-          </span>
-          <h3>First round</h3>
-          <p>Selected contestants take the stage in Ilorin. Fifteen advance.</p>
-        </li>
-        <li>
-          <span class="journey-number">15</span>
-          <h3>Semifinal</h3>
-          <p>
-            The competition continues, with five speakers reaching the final.
-          </p>
-        </li>
-        <li>
-          <span class="journey-number">5</span>
-          <h3>Final</h3>
-          <p>Five finalists speak for the winner and two runner-up places.</p>
-        </li>
-      </ol>
-      <div class="journey-end">
-        <span class="top-three">3</span>
-        <p>
-          A winner. A first runner-up.
-          <br />A second runner-up.
-        </p>
-        <p class="journey-note">
-          All three physical rounds take place
-          <br />
-          on Thursday, 19 November 2026.
-        </p>
+      <div class="section-head">
+        <h2>On stage with us.</h2>
+        <p>The convener, judges and special guests for TPSP 2026.</p>
+      </div>
+      <ul class="people-cards">
+        {onStage.map((person, i) => (
+          <li style={`--tone:${i % 4}`}>
+            <span class="avatar" aria-hidden="true">
+              {initials(person.name)}
+            </span>
+            <span class="person-name">{person.name}</span>
+            <span class="person-role">{person.role}</span>
+          </li>
+        ))}
+      </ul>
+      <div class="partners">
+        <h3>Sponsors and partners</h3>
+        <ul>
+          {people.partners.map((partner) => (
+            <li>{partner}</li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
-  <section id="attend" class="attend section wrap">
-    <div class="attend-title">
+
+  <section id="venue" class="venue">
+    <Chevrons class="venue-chevrons" />
+    <div class="venue-inner wrap section">
       <h2>
-        Be in the room
+        See you in
         <br />
-        for what’s next.
+        the Main Hall.
       </h2>
-      <p class="lead">
-        Bring your encouragement.
-        <br />
-        They’ll bring their ideas.
-      </p>
-    </div>
-    <div class="attend-details">
-      <p>
-        Join parents, guardians, teachers, students and supporters for live
-        speeches, feedback from judges and the celebration of our top three
-        speakers.
-      </p>
-      <dl class="event-details">
-        <div>
-          <dt>When</dt>
-          <dd>
-            {event.date}
-            <br />
-            {event.arrival} arrivals
-            <br />
-            {event.programmeStart} programme starts
-            <br />
-            {event.close} close
-            <br />
-            <span class="small">All times WAT</span>
-          </dd>
-        </div>
+      <dl class="venue-details">
         <div>
           <dt>Where</dt>
           <dd>
             {event.venue}
             <br />
-            {event.city}
+            9a Ahmadu Bello Way, Ilorin, Kwara State
           </dd>
         </div>
         <div>
-          <dt>Admission</dt>
+          <dt>When</dt>
           <dd>
-            Free. RSVP on Luma.
+            {event.date}
             <br />
-            No approval required.
+            {event.arrival} arrivals and purple carpet
+            <br />
+            {event.programmeStart} programme starts, {event.close} close
           </dd>
         </div>
+        <div>
+          <dt>Entry</dt>
+          <dd>Free. RSVP on Luma. No approval required.</dd>
+        </div>
       </dl>
-      <ExternalLink href={event.rsvp} class="button purple">
+      <ExternalLink href={event.rsvp} class="button yellow">
         RSVP to attend
       </ExternalLink>
-      <p class="small">
-        For audience attendance. Contestants apply separately.
-      </p>
     </div>
   </section>
-  <section class="poster-section">
-    <div class="poster-inner wrap">
-      <Image
-        src={cover}
-        alt="TPSP 2026 event cover: Voices for the Future, 19 November 2026, Ilorin Innovation Hub."
-        width={600}
-        widths={[360, 600, 720, 900]}
-        sizes="(max-width: 767px) 90vw, 44vw"
-        format="webp"
-        loading="lazy"
-      />
-      <div>
-        <h2>
-          One idea.
-          <br />
-          Your voice.
-          <br />
-          Start here.
-        </h2>
-        <p>
-          You have 60 seconds to tell us about a change you’d like to see. A
-          parent or guardian can help you take the first step.
-        </p>
-        <a href="/enter/" class="button cream">
-          Prepare your audition <span aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-  </section>
+
   <section id="questions" class="faq section wrap">
     <div>
-      <h2>
-        A few things
-        <br />
-        to know.
-      </h2>
+      <h2>Good to know.</h2>
       <p>
         Have a question? Email{' '}
         <a href={`mailto:${event.email}`}>{event.email}</a> or use “Contact the
@@ -265,6 +314,9 @@ const faqs = [
         </a>
         .
       </p>
+      <a class="text-link" href="/enter/">
+        Contestant guide <span aria-hidden="true">→</span>
+      </a>
     </div>
     <div class="faq-list">
       {faqs.map(([question, answer]) => (

@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 const base = process.env.SITE_URL || 'https://tranquilprize.com';
 for (const [route, text] of [
-  ['/', '9:30 a.m.'],
+  ['/', '8:30 a.m.'],
+  ['/programme/', 'Dear Mr Governor'],
   ['/enter/', 'Open the application form'],
   ['/participation/', 'Photography and filming'],
 ]) {

@@ -21,7 +21,7 @@ Preview at http://127.0.0.1:4322. To inspect production output, run `npm run bui
 - `/participation/`: privacy, guardian role and filming information.
 - `src/data/event.ts`: shared confirmed event facts and registration destinations.
 
-Public arrivals: 9:30 a.m. WAT. Programme: 10:30 a.m. WAT. Close: 5:00 p.m. WAT.
+Public arrivals and purple carpet: 8:30 a.m. WAT. Programme: 9:00 a.m. WAT (opening ceremony 10:30 a.m.). Close: 5:00 p.m. WAT. The programme of events lives in `src/data/event.ts`; regenerate the printable PDF with `npm run programme:pdf` after changing it.
 Applications remain in the organiser-owned Google Form. Free audience RSVPs remain in Luma.
 The host can also be reached at info@tranquilprize.com.
 No application database, review dashboard, registration embed or analytics is included.

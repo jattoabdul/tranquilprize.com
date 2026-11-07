@@ -1,0 +1,19 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = 'chevrons' } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 600 600"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d="M600 0 L600 600 L80 600 Z" fill="#e5179b" opacity="0.9"></path>
+  <path d="M600 90 L600 600 L190 600 Z" fill="#ffc61a"></path>
+  <path d="M600 190 L600 600 L310 600 Z" fill="#7a2fd0"></path>
+  <path d="M600 300 L600 600 L430 600 Z" fill="#f1e6fd"></path>
+</svg>

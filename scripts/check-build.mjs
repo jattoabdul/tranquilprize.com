@@ -3,7 +3,7 @@ import { readFile, access } from 'node:fs/promises';
 import { parseHTML } from 'linkedom';
 
 const origin = 'https://tranquilprize.com';
-const routes = ['/', '/enter/', '/participation/'];
+const routes = ['/', '/enter/', '/programme/', '/participation/'];
 const pages = new Map();
 for (const route of routes) {
   const html = await readFile(`dist${route}index.html`, 'utf8');
@@ -59,6 +59,8 @@ for (const [route, document] of pages) {
         'Unapproved external destination',
       );
       assert(a.rel.includes('noopener'), 'External link needs noopener');
+    } else if (/\.[a-z0-9]+$/i.test(url.pathname)) {
+      await access(`dist${url.pathname}`);
     } else {
       assert(pages.has(url.pathname), `Missing route ${url.pathname}`);
       if (url.hash)
@@ -69,8 +71,19 @@ for (const [route, document] of pages) {
     }
   }
 }
-assert(pages.get('/').body.textContent.includes('9:30 a.m.'));
-assert(pages.get('/').body.textContent.includes('10:30 a.m.'));
+assert(pages.get('/').body.textContent.includes('8:30 a.m.'));
+assert(pages.get('/').body.textContent.includes('9:00 a.m.'));
+assert(!pages.get('/').body.textContent.includes('9:30 a.m.'), 'Old arrival');
+const programmeText = pages.get('/programme/').body.textContent;
+for (const text of [
+  '8:30',
+  'Round One',
+  'Semifinal',
+  'Dear Mr Governor',
+  'Awards',
+])
+  assert(programmeText.includes(text), `Programme missing ${text}`);
+await access('dist/tpsp-2026-programme.pdf');
 assert(pages.get('/enter/').body.textContent.includes('JS1'));
 assert(pages.get('/enter/').body.textContent.includes('60 seconds'));
 await access('dist/404.html');

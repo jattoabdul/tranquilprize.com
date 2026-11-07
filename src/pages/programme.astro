@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+import { event, programme, people } from '../data/event';
+
+const meridiem = (time: string) => {
+  const hour = Number(time.split(':')[0]);
+  return hour >= 8 && hour < 12 ? 'a.m.' : 'p.m.';
+};
+const iso = (time: string) => {
+  let [hour, minute] = time.split(':').map(Number);
+  if (hour < 8) hour += 12;
+  return `2026-11-19T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}+01:00`;
+};
+---
+
+<Layout
+  title="Programme of events | TPSP 2026"
+  description="The running order for the Tranquil Public Speaking Prize 2026 on Thursday 19 November at the Main Hall, Ilorin Innovation Hub. Arrivals and purple carpet from 8:30 a.m. WAT."
+>
+  <section class="guide-hero programme-hero">
+    <div class="wrap">
+      <a href="/" class="back-link">
+        ← TPSP 2026
+      </a>
+      <h1>
+        Programme <br />
+        of events.
+      </h1>
+      <p class="lead">
+        Tranquil’s Public Speaking Prize 2026. <br />
+        Theme: {event.theme}.
+      </p>
+      <div class="guide-summary">
+        <span>{event.date}</span>
+        <span>{event.venue}, Ilorin</span>
+        <span class="print-hide">
+          Arrivals and purple carpet from {event.arrival}
+        </span>
+      </div>
+      <a class="button cream print-hide" href="/tpsp-2026-programme.pdf">
+        Download printable programme <span aria-hidden="true">↓</span>
+        <span class="sr-only"> (PDF)</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="programme section wrap" aria-labelledby="running-order">
+    <div class="programme-intro">
+      <h2 id="running-order">The day at a glance.</h2>
+      <p>
+        All times are West Africa Time and may shift slightly on the day. Every
+        contestant receives the same speaking time in each round.{' '}
+        <span class="print-only">
+          Live programme: tranquilprize.com/programme. Enquiries: {event.email}.
+        </span>
+      </p>
+    </div>
+    <ol class="timeline">
+      {programme.map((item) => (
+        <li
+          class={item.kind ? `is-${item.kind}` : undefined}
+          data-start={iso(item.start)}
+          data-end={iso(item.end)}
+        >
+          <p class="timeline-time">
+            <time datetime={iso(item.start)}>
+              {item.start} <span>{meridiem(item.start)}</span>
+            </time>
+            <span class="timeline-end">
+              to{' '}
+              <time datetime={iso(item.end)}>
+                {item.end} {meridiem(item.end)}
+              </time>
+            </span>
+          </p>
+          <div>
+            <h3>{item.title}</h3>
+            {item.detail && <p>{item.detail}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="people section wrap" aria-labelledby="people-heading">
+    <h2 id="people-heading">On stage with us.</h2>
+    <div class="people-grid">
+      <div>
+        <h3>Convener</h3>
+        <ul>
+          <li>{people.convener.name}</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Judges</h3>
+        <ul>
+          {people.judges.map((person) => (
+            <li>
+              {person.name}
+              <span>{person.role}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Special guests</h3>
+        <ul>
+          {people.guests.map((person) => (
+            <li>
+              {person.name}
+              <span>{person.role}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Sponsors and partners</h3>
+        <ul>
+          {people.partners.map((partner) => (
+            <li>{partner}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="guide-audience wrap print-hide">
+    <h2>Join us in the room.</h2>
+    <p>
+      Admission is free. RSVP on Luma so we can welcome you. Questions? Email{' '}
+      <a href={`mailto:${event.email}`}>{event.email}</a>.
+    </p>
+    <ExternalLink href={event.rsvp} class="button purple">
+      RSVP to attend
+    </ExternalLink>
+  </section>
+  <script is:inline type="module" src="/programme-now.js"></script>
+</Layout>
