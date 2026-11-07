@@ -47,6 +47,17 @@ try {
   const page = await browser.newPage();
   await page.goto(base + '/programme/', { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(async () => {
+    const images = [...document.images];
+    for (const img of images) img.loading = 'eager';
+    await Promise.all(
+      images.map((img) =>
+        img.complete
+          ? null
+          : new Promise((done) => (img.onload = img.onerror = done)),
+      ),
+    );
+  });
   await page.emulateMedia({ media: 'print' });
   await page.pdf({
     path: 'public/tpsp-2026-programme.pdf',

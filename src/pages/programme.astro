@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ExternalLink from '../components/ExternalLink.astro';
+import SponsorWall from '../components/SponsorWall.astro';
 import { event, programme, people } from '../data/event';
 
 const meridiem = (time: string) => {
@@ -91,6 +92,15 @@ const iso = (time: string) => {
         <ul>
           <li>{people.convener.name}</li>
         </ul>
+        <h3 class="people-sub">Guest performer</h3>
+        <ul>
+          {people.performers.map((person) => (
+            <li>
+              {person.name}
+              <span>{person.title}</span>
+            </li>
+          ))}
+        </ul>
       </div>
       <div>
         <h3>Judges</h3>
@@ -98,7 +108,12 @@ const iso = (time: string) => {
           {people.judges.map((person) => (
             <li>
               {person.name}
-              <span>{person.role}</span>
+              <span>
+                {person.role}
+                {person.title && (
+                  <span class="person-detail">, {person.title}</span>
+                )}
+              </span>
             </li>
           ))}
         </ul>
@@ -109,20 +124,25 @@ const iso = (time: string) => {
           {people.guests.map((person) => (
             <li>
               {person.name}
-              <span>{person.role}</span>
+              <span>
+                {person.role}
+                {person.title && (
+                  <span class="person-detail">, {person.title}</span>
+                )}
+              </span>
             </li>
           ))}
         </ul>
       </div>
-      <div>
-        <h3>Sponsors and partners</h3>
-        <ul>
-          {people.partners.map((partner) => (
-            <li>{partner}</li>
-          ))}
-        </ul>
-      </div>
     </div>
+  </section>
+
+  <section
+    class="programme-sponsors section wrap"
+    aria-labelledby="sponsors-heading"
+  >
+    <h2 id="sponsors-heading">Sponsors and partners.</h2>
+    <SponsorWall compact />
   </section>
 
   <section class="guide-audience wrap print-hide">

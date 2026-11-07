@@ -1,0 +1,38 @@
+---
+import { sponsors } from '../data/event';
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['sponsor-wall', { compact }]}>
+  {sponsors.map((group, g) => (
+    <section class:list={['sponsor-tier', { gold: g === 0 }]}>
+      <h3>{group.tier}</h3>
+      <ul>
+        {group.items.map((item) => (
+          <li
+            class:list={{
+              solid: item.bg,
+              wide: item.wide,
+              'text-only': !item.logo,
+            }}
+            style={item.bg ? `--tile:${item.bg}` : undefined}
+          >
+            {item.logo ? (
+              <img
+                src={`/partners/${item.logo}.webp`}
+                alt={item.name}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span class="sponsor-name">{item.name}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>

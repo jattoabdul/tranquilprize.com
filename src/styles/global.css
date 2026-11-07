@@ -1583,3 +1583,308 @@ details p {
     font-size: 7.5pt;
   }
 }
+
+/* Sponsors and partners */
+.person-title {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.people-sub {
+  margin-top: 30px;
+}
+.people .people-grid {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.1fr) minmax(0, 1.1fr);
+}
+.person-detail {
+  display: inline;
+}
+.sponsor-wall {
+  display: grid;
+  gap: 44px;
+}
+.sponsor-tier h3 {
+  font-size: 20px;
+  color: var(--magenta-text);
+  margin-bottom: 16px;
+}
+.sponsor-tier ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+.sponsor-tier.gold ul {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.sponsor-tier li {
+  height: 124px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--lilac-2);
+  display: grid;
+  place-items: center;
+  padding: 18px 24px;
+  overflow: hidden;
+}
+.sponsor-tier.gold li {
+  height: 156px;
+  box-shadow: inset 0 0 0 3px var(--yellow);
+}
+.sponsor-tier img {
+  max-width: 100%;
+  max-height: 78px;
+  width: auto;
+  height: auto;
+}
+.sponsor-tier.gold img {
+  max-height: 104px;
+}
+.sponsor-tier li.solid {
+  background: var(--tile);
+  box-shadow: none;
+  padding: 0;
+}
+.sponsor-tier li.solid img {
+  max-height: 100%;
+}
+.sponsor-tier li.text-only {
+  background: var(--lilac);
+  text-align: center;
+}
+.sponsor-name {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: 21px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--purple);
+}
+.programme-sponsors h2 {
+  font-size: clamp(32px, 3.6vw, 52px);
+  margin-bottom: 36px;
+}
+.sponsor-wall.compact .sponsor-tier li {
+  height: 100px;
+}
+.sponsor-wall.compact .sponsor-tier.gold li {
+  height: 120px;
+}
+.sponsor-wall.compact .sponsor-tier img {
+  max-height: 62px;
+}
+.sponsor-wall.compact .sponsor-tier.gold img {
+  max-height: 80px;
+}
+@media (max-width: 1023px) {
+  .people .people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  .people .people-grid {
+    grid-template-columns: 1fr;
+  }
+  .sponsor-tier ul,
+  .sponsor-tier.gold ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .sponsor-tier li,
+  .sponsor-wall.compact .sponsor-tier li {
+    height: 96px;
+    padding: 12px 14px;
+  }
+  .sponsor-tier.gold li,
+  .sponsor-wall.compact .sponsor-tier.gold li {
+    height: 112px;
+  }
+  .sponsor-tier img,
+  .sponsor-tier.gold img,
+  .sponsor-wall.compact .sponsor-tier img {
+    max-height: 64px;
+  }
+  .sponsor-name {
+    font-size: 16px;
+  }
+}
+@media print {
+  .person-detail {
+    display: none;
+  }
+  .people-sub {
+    margin-top: 2.5mm;
+  }
+  .people .people-grid {
+    grid-template-columns: 0.8fr 1fr 1.3fr;
+  }
+  .programme-sponsors {
+    margin-top: 3mm;
+    break-inside: avoid;
+  }
+  .programme-sponsors h2 {
+    display: none;
+  }
+  .sponsor-wall,
+  .sponsor-wall.compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm 5mm;
+    align-items: flex-start;
+  }
+  .sponsor-tier h3 {
+    font-size: 8pt;
+    margin-bottom: 1mm;
+  }
+  .sponsor-tier ul,
+  .sponsor-tier.gold ul {
+    display: flex;
+    gap: 1.5mm;
+  }
+  .sponsor-tier li,
+  .sponsor-tier.gold li,
+  .sponsor-wall.compact .sponsor-tier li,
+  .sponsor-wall.compact .sponsor-tier.gold li {
+    height: 11mm;
+    width: auto;
+    padding: 1mm 2mm;
+    border-radius: 2mm;
+    box-shadow: inset 0 0 0 0.3mm var(--lilac-2);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .sponsor-tier li.solid {
+    padding: 0;
+  }
+  .sponsor-tier img,
+  .sponsor-tier.gold img,
+  .sponsor-wall.compact .sponsor-tier img,
+  .sponsor-wall.compact .sponsor-tier.gold img {
+    max-height: 9mm;
+    max-width: 26mm;
+  }
+  .sponsor-tier li.solid img {
+    max-height: 11mm;
+  }
+  .sponsor-name {
+    font-size: 7.5pt;
+    max-width: 30mm;
+  }
+}
+.people-grid li .person-detail {
+  display: inline;
+  font-size: inherit;
+}
+/* Print: front is the running order, back is people and sponsors. */
+@media print {
+  .timeline {
+    gap: 1.3mm;
+  }
+  .timeline li {
+    padding: 1.4mm 4mm;
+  }
+  .people {
+    break-before: page;
+    margin-top: 0;
+    padding: 5mm 6mm;
+  }
+  .people h2 {
+    font-size: 20pt;
+  }
+  .people-grid h3 {
+    font-size: 12pt;
+    margin-bottom: 2mm;
+  }
+  .people-grid ul {
+    gap: 2mm;
+  }
+  .people-grid li {
+    font-size: 10pt;
+  }
+  .people-grid li > span {
+    font-size: 8.5pt;
+  }
+  .people-grid li .person-detail {
+    display: inline;
+  }
+  .programme-sponsors {
+    margin-top: 6mm;
+  }
+  .programme-sponsors h2 {
+    display: block;
+    font-size: 16pt;
+    margin-bottom: 3mm;
+  }
+  .sponsor-wall,
+  .sponsor-wall.compact {
+    gap: 4mm 6mm;
+  }
+  .sponsor-tier h3 {
+    font-size: 10pt;
+    margin-bottom: 1.5mm;
+  }
+  .sponsor-tier ul,
+  .sponsor-tier.gold ul {
+    flex-wrap: wrap;
+    gap: 2mm;
+  }
+  .sponsor-tier li,
+  .sponsor-tier.gold li,
+  .sponsor-wall.compact .sponsor-tier li,
+  .sponsor-wall.compact .sponsor-tier.gold li {
+    height: 17mm;
+    padding: 1.5mm 3mm;
+  }
+  .sponsor-tier img,
+  .sponsor-tier.gold img,
+  .sponsor-wall.compact .sponsor-tier img,
+  .sponsor-wall.compact .sponsor-tier.gold img {
+    max-height: 13mm;
+    max-width: 38mm;
+  }
+  .sponsor-tier li.solid img {
+    max-height: 17mm;
+  }
+  .sponsor-name {
+    font-size: 9pt;
+    max-width: 40mm;
+  }
+}
+.sponsor-tier li.solid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sponsor-tier li.solid img,
+.sponsor-wall.compact .sponsor-tier li.solid img {
+  height: 100%;
+  width: auto;
+  max-height: none;
+}
+.sponsor-tier li.wide {
+  grid-column: span 2;
+}
+.sponsor-tier li.wide img {
+  max-height: 96px;
+}
+@media print {
+  .sponsor-tier li.wide img {
+    max-height: 13mm;
+    max-width: 70mm;
+  }
+}
+.sponsor-tier li.solid img,
+.sponsor-wall.compact .sponsor-tier li.solid img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+@media print {
+  .sponsor-tier li.solid {
+    width: 30mm;
+  }
+}

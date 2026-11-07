@@ -73,10 +73,18 @@ export const programme: ProgrammeItem[] = [
   },
   {
     start: '12:35',
-    end: '1:20',
+    end: '1:15',
     title: 'Lunch break',
-    detail: 'Round One scores are confirmed.',
+    detail: 'Round One scores are compiled.',
     kind: 'break',
+  },
+  {
+    start: '1:15',
+    end: '1:20',
+    title: 'Spoken word: Saliu Ahmad (Penwarlord)',
+    detail:
+      'A guest spoken word performance while Round One results are confirmed.',
+    kind: 'moment',
   },
   {
     start: '1:20',
@@ -95,10 +103,17 @@ export const programme: ProgrammeItem[] = [
   },
   {
     start: '2:45',
-    end: '3:05',
+    end: '3:00',
     title: 'Short break',
-    detail: 'Semifinal scores are confirmed.',
+    detail: 'Semifinal scores are compiled.',
     kind: 'break',
+  },
+  {
+    start: '3:00',
+    end: '3:05',
+    title: 'Spoken word: Saliu Ahmad (Penwarlord)',
+    detail: 'A second guest performance while semifinal results are confirmed.',
+    kind: 'moment',
   },
   {
     start: '3:05',
@@ -137,28 +152,113 @@ export const programme: ProgrammeItem[] = [
   },
 ];
 
-// Names and roles as published on the official TPSP 2026 event flyer.
-export const people = {
+export type Person = { name: string; role: string; title?: string };
+
+// Names, roles and titles as confirmed by the organiser (flyer, 7 Nov 2026).
+// Four judges are confirmed; if one withdraws, remove them here.
+export const people: {
+  convener: Person;
+  judges: Person[];
+  guests: Person[];
+  performers: Person[];
+} = {
   convener: { name: 'Sakeenah Jatto', role: 'Convener' },
   judges: [
     { name: 'Dr Foluke Aliyyu', role: 'Chief Judge' },
     { name: 'Sanni Alausa-Issa', role: 'Judge' },
     { name: 'Bisola Oduwole-Suleiman', role: 'Judge' },
-  ],
-  guests: [
-    { name: 'Rafiu Ajakaye, PhD', role: 'Special Guest' },
-    { name: 'Mrs Ajide Victoria Omowumi', role: 'Special Guest' },
-    { name: 'Dr Abdulkadir Oba La’aro', role: 'Special Guest' },
     {
-      name: 'Mal. Abdur Rahman Adebayo (Ara Aderinoye)',
-      role: 'Gold Sponsor',
+      name: 'Dr Rasheed Ajao',
+      role: 'Judge',
+      title:
+        'Senior Education Officer, Kwara State Ministry of Education and Human Capital Development',
     },
   ],
-  partners: [
-    'Kwara State Ministry of Education and Human Capital Development',
-    'Ilorin Innovation Hub',
-    'Plat Technologies',
-    'Jatto',
-    'Deejah',
+  guests: [
+    {
+      name: 'Hon. Ibraheem Abdullateef',
+      role: 'Special Guest',
+      title:
+        'Senior Special Assistant to the Kwara State Governor on Communications',
+    },
+    {
+      name: 'Dr Mahmud Abdulraheem, Esq.',
+      role: 'Special Guest',
+      title: 'Chief Promoter, GerinFm 95.5',
+    },
+    { name: 'Rafiu Ajakaye, PhD', role: 'Special Guest' },
+    { name: 'Dr Oba Abdulkadir La’aro', role: 'Special Guest' },
+    { name: 'Mrs Ajide Victoria Omowumi', role: 'Special Guest' },
+    {
+      name: 'Mal. Abdur Rahman Adebayo (ARA Aderinoye)',
+      role: 'Gold Sponsor / Special Guest',
+    },
+    {
+      name: 'Engr Taofik Abdulkareem',
+      role: 'Gold Sponsor / Special Guest',
+      title: 'Plat Technologies Limited',
+    },
+  ],
+  performers: [
+    {
+      name: 'Saliu Ahmad (Penwarlord)',
+      role: 'Guest Performer',
+      title: 'Spoken word',
+    },
   ],
 };
+
+// bg: tile colour for logos that are solid colour blocks.
+export type Sponsor = {
+  name: string;
+  logo?: string;
+  bg?: string;
+  wide?: boolean;
+};
+
+// Tiers follow the official sponsor and partner announcement posts.
+export const sponsors: { tier: string; items: Sponsor[] }[] = [
+  {
+    tier: 'Gold Sponsors',
+    items: [
+      { name: 'Mal. Abdur Rahman Adebayo (ARA Aderinoye)' },
+      { name: 'Plat Technologies', logo: 'plat-technologies' },
+      { name: 'Jatto Solutions Inc.', logo: 'jatto-solutions' },
+      { name: 'Jatto Hafiz', logo: 'jh' },
+    ],
+  },
+  {
+    tier: 'Educational Partner',
+    items: [
+      {
+        name: 'Kwara State Ministry of Education and Human Capital Development',
+        logo: 'kwara-ministry-of-education',
+        wide: true,
+      },
+    ],
+  },
+  {
+    tier: 'Media Partners',
+    items: [
+      { name: 'Factual Naija', logo: 'factual-naija' },
+      { name: 'The Media Sis', logo: 'the-media-sis' },
+      { name: 'Kraftmann Designs', logo: 'kraftmann-designs' },
+    ],
+  },
+  {
+    tier: 'Partners',
+    items: [
+      { name: 'Ilorin Innovation Hub', logo: 'ilorin-innovation-hub' },
+      { name: 'Mariamella Consult Ltd', logo: 'mariamella-consult' },
+      { name: 'House 12 Workspaces & Lifestyle', logo: 'house-12' },
+      { name: 'Deejah Skincare and Aesthetics', logo: 'deejah' },
+      { name: 'Noor & Thrive', logo: 'noor-and-thrive' },
+      {
+        name: 'Raising Muslim Girls',
+        logo: 'raising-muslim-girls',
+        bg: '#0f6155',
+      },
+      { name: 'Barakah Edibles', logo: 'barakah-edibles', bg: '#000000' },
+    ],
+  },
+];

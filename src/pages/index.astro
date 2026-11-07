@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import Mic from '../components/Mic.astro';
 import Chevrons from '../components/Chevrons.astro';
+import SponsorWall from '../components/SponsorWall.astro';
 import { event, programme, people } from '../data/event';
 
 const meridiem = (time: string) => {
@@ -15,13 +16,18 @@ const highlights = highlightStarts.map((start) =>
 );
 const initials = (name: string) =>
   name
-    .replace(/^(Dr|Mrs|Mr|Mal\.)\s+/, '')
+    .replace(/^((Dr|Mrs|Mr|Mal|Hon|Engr)\.?\s+)+/, '')
     .split(/\s+/)
     .filter((part) => /^[A-Z]/.test(part))
     .slice(0, 2)
     .map((part) => part[0])
     .join('');
-const onStage = [people.convener, ...people.judges, ...people.guests];
+const onStage = [
+  people.convener,
+  ...people.judges,
+  ...people.guests,
+  ...people.performers,
+];
 
 const rounds = [
   {
@@ -240,7 +246,10 @@ const faqs = [
     <div class="wrap">
       <div class="section-head">
         <h2>On stage with us.</h2>
-        <p>The convener, judges and special guests for TPSP 2026.</p>
+        <p>
+          The convener, judges, special guests and guest performer for TPSP
+          2026.
+        </p>
       </div>
       <ul class="people-cards">
         {onStage.map((person, i) => (
@@ -250,18 +259,19 @@ const faqs = [
             </span>
             <span class="person-name">{person.name}</span>
             <span class="person-role">{person.role}</span>
+            {person.title && <span class="person-title">{person.title}</span>}
           </li>
         ))}
       </ul>
-      <div class="partners">
-        <h3>Sponsors and partners</h3>
-        <ul>
-          {people.partners.map((partner) => (
-            <li>{partner}</li>
-          ))}
-        </ul>
-      </div>
     </div>
+  </section>
+
+  <section id="sponsors" class="sponsors section wrap">
+    <div class="section-head">
+      <h2>With thanks to our sponsors and partners.</h2>
+      <p>TPSP 2026 is made possible by the people and organisations below.</p>
+    </div>
+    <SponsorWall />
   </section>
 
   <section id="venue" class="venue">
