@@ -243,6 +243,7 @@ export const sponsors: { tier: string; items: Sponsor[] }[] = [
       { name: 'Factual Naija', logo: 'factual-naija' },
       { name: 'The Media Sis', logo: 'the-media-sis' },
       { name: 'Kraftmann Designs', logo: 'kraftmann-designs' },
+      { name: 'SAB Shot It', logo: 'sab-shot-it' },
     ],
   },
   {
