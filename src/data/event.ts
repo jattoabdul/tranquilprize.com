@@ -244,6 +244,7 @@ export const sponsors: { tier: string; items: Sponsor[] }[] = [
       { name: 'The Media Sis', logo: 'the-media-sis' },
       { name: 'Kraftmann Designs', logo: 'kraftmann-designs' },
       { name: 'SAB Shot It', logo: 'sab-shot-it' },
+      { name: 'Gerin FM 95.5', logo: 'gerin-fm' },
     ],
   },
   {
@@ -260,6 +261,9 @@ export const sponsors: { tier: string; items: Sponsor[] }[] = [
         bg: '#0f6155',
       },
       { name: 'Barakah Edibles', logo: 'barakah-edibles', bg: '#000000' },
+      { name: 'IntelliGeeks', logo: 'intelligeeks' },
+      { name: 'Beacon Literacy Advancement Network', logo: 'beacon-literacy' },
+      { name: 'Highlander Multimedia', logo: 'highlander-multimedia' },
     ],
   },
 ];
